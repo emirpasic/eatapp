@@ -21,7 +21,7 @@ module Api::V1
 
     def delete
       Restaurant.destroy(params[:id])
-      render json: { deleted: true }
+      render nothing: true
     end
 
     private

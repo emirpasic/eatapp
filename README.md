@@ -22,7 +22,7 @@ rake db:create && rake db:migrate && rake db:seed
 - Target test coverage over 80%
 - bcrypt for password hashing (security)
 - Inheritance in user model (DRY as users table is generalization of the other three admin/restaurant/guest users
-  specializations)
+  specializations, the support for this ActiveRecord is limited - Sequelize ORM has better support here)
 - Credentials secured with the master.key file
 
 Not in scope of the solution:

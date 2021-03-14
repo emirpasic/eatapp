@@ -1,6 +1,8 @@
 module Api::V1
   class UsersController < ApplicationController
-    before_action :authorized, only: [:verify_login]
+    before_action only: [:verify_login] do
+      authorized :guest, :restaurant, :admin
+    end
 
     def login
       @user = User.find_by(username: params[:username])

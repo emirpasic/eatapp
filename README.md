@@ -19,7 +19,7 @@ rake db:create && rake db:migrate && rake db:seed
 - JWT for authorization (CookieSession perhaps less usable from the REST API usage point of view, OAuth perhaps
   over-kill for this simple solution)
 - Handling of CORS
-- Target test coverage over 80%
+- Target test coverage over 80% (unfortunately target not met due to time limitations)
 - bcrypt for password hashing (security)
 - Inheritance in user model (DRY as users table is generalization of the other three admin/restaurant/guest users
   specializations, the support for this ActiveRecord is limited - Sequelize ORM has better support here)

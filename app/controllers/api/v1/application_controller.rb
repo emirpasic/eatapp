@@ -1,6 +1,15 @@
 module Api::V1
   class ApplicationController < ActionController::API
-    before_action :authorized
+
+    def authorized(*allowed_users_types)
+      if !logged_in?
+        render json: { message: 'Please log in' }, status: :unauthorized
+      elsif !allowed_users_types.include?(@user_type)
+        render json: { message: 'Unauthorized' }, status: :forbidden
+      end
+    end
+
+    private
 
     def encode_token(payload)
       JWT.encode(payload, Rails.application.credentials.jwt_secret)
@@ -16,7 +25,8 @@ module Api::V1
         token = auth_header.split(' ')[1]
         # header: { 'Authorization': 'Bearer <token>' }
         begin
-          JWT.decode(token, Rails.application.credentials.jwt_secret, true, { algorithm: 'HS256', verify_expiration: true })
+          JWT.decode(token, Rails.application.credentials.jwt_secret, true,
+                     { algorithm: 'HS256', verify_expiration: true })
         rescue JWT::DecodeError
           nil
         end
@@ -24,18 +34,18 @@ module Api::V1
     end
 
     def logged_in_user
+      # Keep for current request
+      return @user if @user
+
       if decoded_token
         user_id = decoded_token[0]['user_id']
         @user = User.find_by(id: user_id)
+        @user_type = @user.class::TYPE
       end
     end
 
     def logged_in?
       !!logged_in_user
-    end
-
-    def authorized
-      render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
     end
   end
 end

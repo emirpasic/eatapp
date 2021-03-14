@@ -1,5 +1,9 @@
 module Api::V1
   class ApplicationController < ActionController::API
+    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+    rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
+
+    private
 
     def authorized(*allowed_users_types)
       if !logged_in?
@@ -46,6 +50,14 @@ module Api::V1
 
     def logged_in?
       !!logged_in_user
+    end
+
+    def record_not_found
+      render json: { message: 'Resource not found' }, status: :not_found
+    end
+
+    def record_invalid(err)
+      render json: { message: err.to_s }, status: :bad_request
     end
   end
 end

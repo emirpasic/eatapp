@@ -37,7 +37,7 @@ module Eatapp
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    # In seconds
-    config.jwt_expiration_time = 3600
+    # In seconds (1 day)
+    config.jwt_expiration_time = 86400
   end
 end

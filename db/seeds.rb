@@ -8,6 +8,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Create users
 password = Rails.application.credentials.master_password
 
 admin1_user = AdminUser.create!(username: 'admin1', password: password)
@@ -19,3 +20,9 @@ guest1_user = GuestUser.create!(username: 'guest1', password: password,
 guest2_user = GuestUser.create!(username: 'guest2', password: password,
                                 first_name: 'guest', last_name: '2',
                                 phone: '321321', email: 'guest2@test.com')
+
+# Create restaurants
+restaurant1 = Restaurant.create!(name: 'restaurant1', cuisines: 'japanese',
+                                 phone: '234234', email: ' restaurant1@test.com',
+                                 location: 'Sarajevo, Bosnia and Herzegovina',
+                                 opening_hours: 'Monday to Sunday, 8am to 11pm')

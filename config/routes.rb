@@ -19,6 +19,12 @@ Rails.application.routes.draw do
       post '/guest/:id', to: 'guest_users#update'
       delete '/guest/:id', to: 'guest_users#delete'
 
+      # reservations
+      post '/reservation', to: 'reservations#create'
+      get '/reservation/:id', to: 'reservations#read'
+      post '/reservation/:id', to: 'reservations#update'
+      delete '/reservation/:id', to: 'reservations#delete'
+
     end
   end
 end

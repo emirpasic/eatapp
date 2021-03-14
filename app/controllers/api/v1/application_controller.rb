@@ -3,14 +3,29 @@ module Api::V1
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
-    private
-
     def authorized(*allowed_users_types)
       if !logged_in?
         render json: { message: 'Please log in' }, status: :unauthorized
-      elsif !allowed_users_types.include?(@user_type)
-        render json: { message: 'Unauthorized' }, status: :forbidden
+      else
+        is_admin = allowed_users_types.include?(:admin) && admin_user?
+        is_restaurant = allowed_users_types.include?(:restaurant) && restaurant_user?
+        is_guest = allowed_users_types.include?(:guest) && guest_user?
+        unless is_admin || is_restaurant || is_guest
+          render json: { message: 'Unauthorized' }, status: :forbidden
+        end
       end
+    end
+
+    def admin_user?
+      @user&.is_a?(AdminUser)
+    end
+
+    def restaurant_user?
+      @user&.is_a?(RestaurantUser)
+    end
+
+    def guest_user?
+      @user&.is_a?(GuestUser)
     end
 
     private
@@ -44,7 +59,6 @@ module Api::V1
       if decoded_token
         user_id = decoded_token[0]['user_id']
         @user = User.find_by(id: user_id)
-        @user_type = @user.class::TYPE
       end
     end
 
@@ -52,12 +66,13 @@ module Api::V1
       !!logged_in_user
     end
 
-    def record_not_found
-      render json: { message: 'Resource not found' }, status: :not_found
+    def record_not_found(err)
+      render json: { message: err.to_s }, status: :not_found
     end
 
     def record_invalid(err)
       render json: { message: err.to_s }, status: :bad_request
     end
+
   end
 end

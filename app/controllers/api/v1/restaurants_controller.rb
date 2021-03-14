@@ -27,7 +27,7 @@ module Api::V1
     private
 
     def permitted_params
-      params.permit(:name, :cuisines, :phone, :email, :location, :opening_hours)
+      params.permit(:restaurant_user_id, :name, :cuisines, :phone, :email, :location, :opening_hours)
     end
 
   end

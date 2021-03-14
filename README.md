@@ -24,6 +24,7 @@ rake db:create && rake db:migrate && rake db:seed
 - Inheritance in user model (DRY as users table is generalization of the other three admin/restaurant/guest users
   specializations, the support for this ActiveRecord is limited - Sequelize ORM has better support here)
 - Credentials secured with the master.key file
+- Versioning through namespaces (laziest and easiest solution that works, there are gems for this also, but this suffices)
 
 Not in scope of the solution:
 

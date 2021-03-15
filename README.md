@@ -3,7 +3,7 @@
 ## Running the application
 
 ```
-# Master key for credentials sent seperately in email.
+# Master key sent seperately in email.
 # To view the credentials use: RAILS_MASTER_KEY=??? EDITOR=vim rails credentials:edit
 export RAILS_MASTER_KEY=???
 
@@ -16,8 +16,11 @@ rails server
 
 ## Test the application
 
-TODO write tests and document command to execute the test suite
-
+```
+# Master key sent seperately in email.
+export RAILS_MASTER_KEY=???
+rails test
+```
 ## Decisions
 
 - Simple task, simple solution (KISS principle)

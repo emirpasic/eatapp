@@ -65,8 +65,8 @@ module Api::V1
         end
 
         reservation = Reservation.update(params[:id],
-                                         # Can't change reservation to antoher user or restaurant
-                                         permitted_params.exclude(:restaurant_id, :user_id))
+                                         # Can't change reservation to anther user or restaurant
+                                         permitted_params.except(:restaurant_id, :user_id))
         render json: reservation
       end
     end

@@ -28,7 +28,8 @@ TODO write tests and document command to execute the test suite
 - JWT for authorization (CookieSession perhaps less usable from the REST API usage point of view, OAuth perhaps
   over-kill for this simple solution)
 - Handling of CORS
-- Target test coverage over 80% (unfortunately target not met due to time limitations)
+- Target test coverage over 80% (unfortunately target not met due to time limitations, tried to cover more with
+  quick&dirty integration tests)
 - bcrypt for password hashing (security)
 - Inheritance in user model (DRY as users table is generalization of the other three admin/restaurant/guest users
   specializations, the support for this ActiveRecord is limited - Sequelize ORM has better support here)
@@ -43,7 +44,10 @@ Not in scope of the solution or not implemented in time:
 - Better normalization of cuisines and opening hours for restaurants. We simply used a string column, but this should be
   normalized into other tables to allow better search functionality across restaurants based on a specific cuisine or
   availability slots.
-- Much room for improvement on the input validations, e.g. validate emails and other input params (omitted due to time constraints, some model validations test only presence)
+- Much room for improvement on the input validations, e.g. validate emails and other input params (omitted due to time
+  constraints, some model validations test only presence)
+- Restaurants and reservation search, not part of requirements, but is probably needed in future to support the clients
+  with reservation search
 
 ## Environment
 

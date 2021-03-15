@@ -12,7 +12,7 @@ module Api::V1
         token = encode_token({ user_id: @user.id, exp: exp })
         render json: { user: @user, token: token }
       else
-        render json: { error: 'Invalid username or password' }
+        render json: { error: 'Invalid/missing username or password' }, status: :unauthorized
       end
     end
 

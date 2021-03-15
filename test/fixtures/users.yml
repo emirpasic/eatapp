@@ -1,9 +1,26 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  username: MyString
-  password_digest: MyString
+admin1:
+  username: admin1
+  password_digest: "$2a$12$AsJJ/V96t17.0LoI/UPwyuvKWaB1Gr0f6EBuyOLWhIjBO6aZsS/kS"
+  type: AdminUser
 
-two:
-  username: MyString
-  password_digest: MyString
+restaurant1:
+  username: restaurant1
+  password_digest: "$2a$12$AsJJ/V96t17.0LoI/UPwyuvKWaB1Gr0f6EBuyOLWhIjBO6aZsS/kS"
+  type: RestaurantUser
+
+restaurant2:
+  username: restaurant2
+  password_digest: "$2a$12$AsJJ/V96t17.0LoI/UPwyuvKWaB1Gr0f6EBuyOLWhIjBO6aZsS/kS"
+  type: RestaurantUser
+
+guest1:
+  username: guest1
+  password_digest: "$2a$12$AsJJ/V96t17.0LoI/UPwyuvKWaB1Gr0f6EBuyOLWhIjBO6aZsS/kS"
+  type: GuestUser
+
+guest2:
+  username: guest2
+  password_digest: "$2a$12$AsJJ/V96t17.0LoI/UPwyuvKWaB1Gr0f6EBuyOLWhIjBO6aZsS/kS"
+  type: GuestUser
